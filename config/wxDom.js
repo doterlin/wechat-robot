@@ -6,7 +6,8 @@ module.exports = {
     'LOGIN_LOADING': '.chat_list .chat_list .ico_loading',
     'SEARCH_INPUT': '.frm_search',
     'SEARCH_RESULT': '.recommendation',
-    'SEARCH_RESULT_ONE': '.recommendation .contact_item.on',
+    'SEARCH_RESULT_ONE': '.recommendation .contact_item',
+    'SEARCH_RESULT_FRIEND': '.recommendation .nickname',
 
     'CHAT_NO_SELECT': '.chat_bd .web_wechat_nomes_icon',
     //输入框
@@ -14,5 +15,5 @@ module.exports = {
     'CHAT_SEND': '.btn.btn_send',
 
     //messages
-    'MSG': '.me .js_message_plain'
+    'MSG': '.you .js_message_plain'
 }
