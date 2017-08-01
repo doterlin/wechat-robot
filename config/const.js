@@ -4,5 +4,5 @@ module.exports = {
     'TARGET_NICK': '大个',
 
     //打招呼消息
-    'HELLO_WORLD': '[呲牙]你好。\n\r机器人[瓢虫]小强[瓢虫]已启动...'
+    'HELLO_WORLD': '你好。\n\r机器人[瓢虫]小强[瓢虫]已启动...'
 }
