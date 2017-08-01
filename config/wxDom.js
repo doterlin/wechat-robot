@@ -12,4 +12,7 @@ module.exports = {
     //输入框
     'CHAT_INPUT': '#editArea',
     'CHAT_SEND': '.btn.btn_send',
+
+    //messages
+    'MSG': '.me .js_message_plain'
 }
