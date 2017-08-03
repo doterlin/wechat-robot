@@ -10,7 +10,9 @@ console.log('正在加载网页...')
 casper.start('https://wx.qq.com/');
 
 var initData = {
-    targetMessageElementsLength: 0
+    targetMessageElementsLength: 0,
+    targetMessageIds:[],
+    lastMsgId: '',
 };
 
 message.init(casper, WXDOM.CHAT_INPUT, WXDOM.CHAT_SEND);
@@ -99,6 +101,13 @@ casper.then(function () {
 
 })
 
+casper.on('newMsg', function(msg){
+    this.echo('触发新文本消息事件，新消息：\n' + msg)
+})
+casper.on('exit', function(msg){
+    this.echo('触发新文本消息事件，新消息：\n' + msg)
+})
+
 // step6
 casper.then(function(step){
     var ts = this;
@@ -110,50 +119,35 @@ casper.then(function(step){
         ts.waitFor(function checkMsgChange() {
             // todo: 大约在出现14条消息后监听失效
             // 失效原因为使用了滚动条插件，DOM中认定选择器对应的元素并非真实的消息条数
-            // 解决方案一：监听到一条或者发送一条都从DOM中删除
-            // 解决方案二：换一种监听方式，比如尝试监听ajax请求：
-            //  casper.on('page.resource.received', function(responseData) {
-            //     this.echo(responseData.url);
-            //  });
-//             id: the number of the requested resource
-// url: the url of the resource
-// time: a Date object
-// headers: the list of headers (list of objects {name:’‘, value:’‘})
-// bodySize: the size of the received content (may increase during multiple call of the callback)
-// contentType: the content type of the resource
-// contentCharset: the charset used for the content of the resource (slimerjs only).
-// redirectURL: if the request has been redirected, this is the redirected url
-// stage: “start”, “end” or “” for intermediate chunk of data
-// status: the HTTP response code (200..)
-// statusText: the HTTP response text for the status (“Ok”...)
-// referrer: the referer url (slimerjs only)
-// body: the content, it may change during multiple call for the same request (slimerjs only).
-// httpVersion.major: the major part of the HTTP protocol version (slimerjs only).
-// httpVersion.minor: the minor part of the HTTP protocol version (slimerjs only).
-
-
-            return ts.evaluate(function (MSG_SELECTOR, MSG_RESPOND_NUM, targetMessageElementsLength) {
-                if(document.querySelectorAll(MSG_SELECTOR).length==0 && targetMessageElementsLength > 0){
+            // try {
+                var msgAttrValues = ts.getElementsAttribute(WXDOM.MSG, WXDOM.MSG_ID_ATTR);
+                if(msgAttrValues.length==0){
+                    return false;
+                }
+                var lastMsgId = JSON.parse(msgAttrValues[msgAttrValues.length-1]).msgId;
+                if(initData.targetMessageIds.indexOf(lastMsgId)<0){
+                    initData.lastMsgId = lastMsgId;
                     return true;
                 }
-                return document.querySelectorAll(MSG_SELECTOR).length - targetMessageElementsLength >= MSG_RESPOND_NUM;
-            }, WXDOM.MSG, CONST.MSG_RESPOND_NUM, initData.targetMessageElementsLength );
-        }, function then() {
-            ts.echo('监听到新消息，正在回复...');
-            ts.captureSelector('./static/img/lastNewMsgContent.png', 'html');
-            initData.targetMessageElementsLength = ts.evaluate(function ( MSG_SELECTOR ) {
-                return document.querySelectorAll(MSG_SELECTOR).length
-            }, WXDOM.MSG);
-            ts.echo('当前对方消息数量：' + initData.targetMessageElementsLength);
+                return false;
+            // } catch (error) {
+                // return false;
+            // }
 
-            // var len = initData.targetMessageElements.length;
+        }, function then() {
+            ts.echo('-----------------------------\n监听到新消息，正在回复...');
+            ts.echo('新消息id: '+initData.lastMsgId);
+            ts.captureSelector('./static/img/lastNewMsgContent.png', 'html');
+            initData.targetMessageIds.push(initData.lastMsgId);
             
-            var newMsgContent = ts.evaluate(function ( MSG_TEXT_SELECTOR ) {
+            ts.echo('当前对方消息数量：' + initData.targetMessageIds.length);
+
+            var newMsgContent = ts.evaluate(function ( MSG_TEXT_SELECTOR, ) {
                 //这里按元素选择器把消息分为两类，文本类和其他类
                 var el = document.querySelectorAll(MSG_TEXT_SELECTOR);
                 var len = el.length;
                 if(len == 0){
-                    return false;
+                    return '';
                 }
                 return el[len-1].innerHTML;
             }, WXDOM.MSG_TEXT);
@@ -162,19 +156,17 @@ casper.then(function(step){
                 if(newMsgContent=="关闭小强"){
                     message.send('[玫瑰]感谢您的使用[玫瑰]\n\r([闪电]需要开启请在控制台启动程序[闪电])');
                     ts.echo('微信发出关闭口令，程序退出。')
-                    ts.exit()
+                    this.captureSelector('exit.jpg','html');
+                    return ts.exit();
                 }
+                ts.emit('newMsg', newMsgContent);
                 message.send('您发送的消息："' + newMsgContent + '"\n\r发送时间：' + new Date().toLocaleString());
             }else{
                 message.send('无法识别您发的消息。"'  + '"\n\r发送时间：' + new Date().toLocaleString());
             }
-            ts.echo('已回复...');
+            ts.echo('-----------------------------\n已回复...');
 
-            // // ts.bypass(6);
-            // this.wait(10, function () {
-                loopListenNewMassage();
-                // ts.bypass(6);
-            // })
+            loopListenNewMassage();
 
         }, function timeout() { }, Number.POSITIVE_INFINITY);
     }
@@ -186,6 +178,7 @@ casper.then(function(step){
 // casper.thenBypass(6);
 
 casper.run(function () {
+    this.captureSelector('exit.jpg','html');
     this.echo('执行完毕，程序退出.');
     this.exit();
 });
