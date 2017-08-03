@@ -1,7 +1,7 @@
 //微信web版需用的各个选择器，方便更新
-var testByMe     = false;
-var massageClass = testByMe? '.me': '.you';
-var MSG_ID_ATTR  = 'data-cm';
+var testByMe = false,
+massageClass = testByMe? '.me': '.you',
+MSG_ID_ATTR  = 'data-cm';
 
 module.exports = {
     //登录
@@ -20,7 +20,7 @@ module.exports = {
     'CHAT_INPUT'          : '#editArea',
     'CHAT_SEND'           : '.btn.btn_send',
 
-    //messages
+    //消息相关
     'MSG_ID_ATTR'         : 'data-cm',
     'MSG'                 : '.chat_bd ' + massageClass + ' [' + MSG_ID_ATTR + ']:not(.avatar)',
     'MSG_TEXT'            : '.chat_bd ' + massageClass + ' [' + MSG_ID_ATTR + ']:not(.avatar) .js_message_plain',

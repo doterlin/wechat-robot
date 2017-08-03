@@ -7,6 +7,7 @@ var message = require('/src/lib/message');
 
 // step1
 console.log('正在加载网页...')
+casper.echo(require('/src/lib/logo').string);
 casper.start('https://wx.qq.com/');
 
 var initData = {
@@ -16,7 +17,6 @@ var initData = {
 };
 
 message.init(casper, WXDOM.CHAT_INPUT, WXDOM.CHAT_SEND);
-
 
 
 // step2
@@ -104,8 +104,8 @@ casper.then(function () {
 casper.on('newMsg', function(msg){
     this.echo('触发新文本消息事件，新消息：\n' + msg)
 })
-casper.on('exit', function(msg){
-    this.echo('触发新文本消息事件，新消息：\n' + msg)
+casper.on('exit', function(){
+    this.echo('-----------------\n已退出程序！' )
 })
 
 // step6
@@ -142,15 +142,16 @@ casper.then(function(step){
             
             ts.echo('当前对方消息数量：' + initData.targetMessageIds.length);
 
-            var newMsgContent = ts.evaluate(function ( MSG_TEXT_SELECTOR, ) {
+            var newMsgContent = ts.evaluate(function ( MSG_SELECTOR, MSG_TEXT_SELECTOR) {
                 //这里按元素选择器把消息分为两类，文本类和其他类
-                var el = document.querySelectorAll(MSG_TEXT_SELECTOR);
-                var len = el.length;
+                var el_msg = document.querySelectorAll(MSG_SELECTOR);
+                var el_msg_text = el_msg[el_msg.length-1].querySelectorAll(MSG_TEXT_SELECTOR);
+                var len = el_msg_text.length;
                 if(len == 0){
                     return '';
                 }
-                return el[len-1].innerHTML;
-            }, WXDOM.MSG_TEXT);
+                return el_msg_text[len-1].innerHTML;
+            }, WXDOM.MSG, WXDOM.MSG_TEXT);
 
             if(newMsgContent){
                 if(newMsgContent=="关闭小强"){
