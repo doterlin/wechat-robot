@@ -29,4 +29,4 @@ var searchWx = function(casperIns, wxNick){
     })
 };
 
-module.exports = search;
+module.exports = searchWx;

@@ -8,7 +8,8 @@ var machine = require('/src/lib/machine');
 
 // step1
 casper.echo(require('/src/lib/logo').string);
-console.log('正在加载网页...')
+console.log('正在加载网页...');
+
 casper.start('https://wx.qq.com/');
 
 
@@ -42,7 +43,7 @@ casper.then(function(){
 //处理新消息
 casper.on('newMsg', function(msg, isTextMsg){
     this.echo('触发新文本消息事件，新消息：\n' + msg);
-    machine.reply(msg, isTextMsg);
+    machine.reply(msg, isTextMsg, this);
 })
 
 casper.on('exit', function(){
