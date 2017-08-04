@@ -1,3 +1,5 @@
+/*发送消息模块*/
+
 var message = {}, _capser = '', _chatInput, _chatSend;
 
 message.init = function(capser, chatInput, chatSend){

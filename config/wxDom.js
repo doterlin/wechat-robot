@@ -21,7 +21,7 @@ module.exports = {
     'CHAT_SEND'           : '.btn.btn_send',
 
     //消息相关
-    'MSG_ID_ATTR'         : 'data-cm',
+    'MSG_ID_ATTR'         : MSG_ID_ATTR,
     'MSG'                 : '.chat_bd ' + massageClass + ' [' + MSG_ID_ATTR + ']:not(.avatar)',
     'MSG_TEXT'            : '.chat_bd ' + massageClass + ' [' + MSG_ID_ATTR + ']:not(.avatar) .js_message_plain',
     'MSG_IMG'             : '.chat_bd ' + massageClass + ' [' + MSG_ID_ATTR + ']:not(.avatar) img'

@@ -6,5 +6,12 @@ module.exports =  {
     // logLevel: "info",
     viewportSize: {width: 1300, height: 900},
     verbose: true,
-    waitTimeout: 60 * 1000
+    timeout: Number.POSITIVE_INFINITY,
+    waitTimeout: Number.POSITIVE_INFINITY,
+    onWaitTimeout: function(){
+        console.log( 'waitFor*方法超时...' )
+    },
+    onTimeout: function(){
+        console.log( '脚本执行超时...' )
+    },
 }

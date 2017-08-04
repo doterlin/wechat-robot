@@ -9,7 +9,7 @@ module.exports = {
     'TARGET_NICK'    : 'feifei',
 
     //打招呼消息
-    'HELLO_WORLD'    : '[瓢虫]' + ROBOT_NAME + '[瓢虫]已启动..\n\r\n\r现在的时间是：'+new Date().toLocaleString(),
+    'HELLO_WORLD'    : '[闪电]' + ROBOT_NAME + '[闪电]已启动..\n\r\n\r现在的时间是：'+new Date().toLocaleString(),
 
     //新增消息多少条时机器人开始回复
     'MSG_RESPOND_NUM': 1,
