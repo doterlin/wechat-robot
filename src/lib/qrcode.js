@@ -1,6 +1,8 @@
 /*处理二维码和登录*/
+var execFile = require("child_process").execFile;
 var WXDOM = require('../../config/wxDom');
 var qrcode = {};
+
 //登录是否成功处理
 function isLogin(casperIns) {
     var ts = casperIns;
@@ -25,7 +27,10 @@ qrcode.start = function (casperIns) {
             format: 'jpg',
             quality: 100
         });
-        ts.echo('以保存二维码："static/img/qr.jpg".\n请按上面的路径打开二维码并在一分钟内在手机上确认登录...');
+        ts.echo('已保存二维码，路径："static/img/qr.jpg".\n正在使用默认软件打开二维码，请用手机微信扫一扫确认登录 (若没有请手动打开)');
+        execFile("node", ["./src/lib/open.js"], null, function (err, stdout, stderr) {
+            console.log(stdout);
+        });
 
         isLogin(ts);
     }, function () { }, 60 * 1000);

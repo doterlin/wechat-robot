@@ -68,3 +68,5 @@ listen.start = function (casperIns) {
 
     loopListenNewMassage();
 }
+
+module.exports = listen;

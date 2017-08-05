@@ -4,6 +4,7 @@ var WXDOM = require('./config/wxDom');
 var qrcode = require('./src/lib/qrcode');
 var searchWx = require('/src/lib/searchWx');
 var listen = require('/src/lib/listen');
+var hello = require('/src/lib/hello');
 var machine = require('/src/lib/machine');
 
 // step1
@@ -18,17 +19,12 @@ casper.then(function () {
     qrcode.start(this);
 });
 
-// 等待加载聊天信息
-casper.then(function () {
-    this.waitWhileVisible(WXDOM.LOGIN_LOADING, function () {
-        this.echo("加载最近聊天信息完毕！");
-    })
-})
+// 等待加载聊天信息，// 搜索目标微信号
 
-// 搜索目标微信号
-casper.then(function () {
+casper.waitWhileVisible(WXDOM.LOGIN_LOADING, function () {
+    this.echo("加载最近聊天信息完毕！");
     searchWx(this, CONST.TARGET_NICK)
-});
+})
 
 // 发送欢迎语
 casper.then(function () {
@@ -36,18 +32,18 @@ casper.then(function () {
 })
 
 // 监听新消息
-casper.then(function(){
+casper.then(function () {
     listen.start(this);
 })
 
 //处理新消息
-casper.on('newMsg', function(msg, isTextMsg){
+casper.on('newMsg', function (msg, isTextMsg) {
     this.echo('触发新文本消息事件，新消息：\n' + msg);
     machine.reply(msg, isTextMsg, this);
 })
 
-casper.on('exit', function(){
-    this.echo('-----------------\n已退出程序！' )
+casper.on('exit', function () {
+    this.echo('-----------------\n已退出程序！')
 })
 
 casper.run(function () {

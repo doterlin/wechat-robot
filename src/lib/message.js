@@ -1,19 +1,18 @@
 /*发送消息模块*/
+var WXDOM = require('../../config/wxDom');
 
-var message = {}, _capser = '', _chatInput, _chatSend;
+var message = {};
 
-message.init = function(capser, chatInput, chatSend){
-    _capser = casper;
-    _chatInput = chatInput; 
-    _chatSend = chatSend; 
-}
-
-message.send = function(msg){
+message.send = function(casperIns, msg){
+    if (!casperIns.visible(WXDOM.CHAT_INPUT) || !casperIns.visible(WXDOM.CHAT_INPUT)) {
+        casperIns.captureSelector('./static/img/sendMessageError.png', 'html');
+        return casperIns.echo("Module message:息输入框框或者发送按钮未加载！");
+    } 
     try {
-        _capser.sendKeys(_chatInput, msg);
-        _capser.click(_chatSend);
+        casperIns.sendKeys(WXDOM.CHAT_INPUT, msg);
+        casperIns.click(WXDOM.CHAT_SEND);
     } catch (error) {
-        _capser.echo('Module message: 发送消息失败-' + error.message, 'ERROR')
+        console.log('Module message: 发送消息失败-' + error.message, 'ERROR')
     }
 }
 

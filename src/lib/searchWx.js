@@ -10,7 +10,7 @@ var searchWx = function(casperIns, wxNick){
         ts.captureSelector('./static/img/SEARCH_INPUT.png', 'html');
     });
 
-    ts.waitForSelector(WXDOM.SEARCH_RESULT, function(){
+    // ts.waitForSelector(WXDOM.SEARCH_RESULT, function(){
         
         ts.waitForSelector(WXDOM.SEARCH_RESULT_FRIEND, function () {
             ts.waitForText(CONST.TARGET_NICK, function () {
@@ -26,7 +26,7 @@ var searchWx = function(casperIns, wxNick){
             ts.exit();
         })
 
-    })
+    // })
 };
 
 module.exports = searchWx;
