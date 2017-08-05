@@ -26,19 +26,12 @@ listen.then = function (casperIns) {
     }, WXDOM.MSG, WXDOM.MSG_TEXT);
 
     if (newMsgContent) {
-        // if (newMsgContent == "关闭") {
-        //     message.send('[玫瑰]感谢您的使用[玫瑰]\n\r([闪电]需要开启请在控制台启动程序[闪电])');
-        //     ts.echo('微信发出关闭口令，程序退出。')
-        //     this.captureSelector('exit.jpg', 'html');
-        //     return ts.exit();
-        // }
         ts.emit('newMsg', newMsgContent, true);
         // message.send('您发送的消息："' + newMsgContent + '"\n\r发送时间：' + new Date().toLocaleString());
     } else {
         ts.emit('newMsg', newMsgContent, false);
         // message.send('无法识别您发的消息。' + '\n\r发送时间：' + new Date().toLocaleString());
     }
-    ts.echo('已回复...\n-----------------------------');
 }
 
 listen.start = function (casperIns) {
@@ -61,9 +54,9 @@ listen.start = function (casperIns) {
 
         }, function then() {
             listen.then(ts);
-            loopListenNewMassage();
+            this.wait(10, loopListenNewMassage);
 
-        }, function timeout() { }, Number.POSITIVE_INFINITY);
+        }, function timeout() { }, 1000 * 60 * 60 * 24 * 365);
     }
 
     loopListenNewMassage();

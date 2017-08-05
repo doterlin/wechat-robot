@@ -6,29 +6,32 @@ var fuzzyDirective = require('../directive/fuzzy');
 var machine = {};
 
 machine.reply = function(msg, isTextMsg, casperIns){
-    message.init(casper, WXDOM.CHAT_INPUT, WXDOM.CHAT_SEND);
+    console.log('正在处理消息... ');
 
     //非文字类消息
-    if(!isTextMsg) return dealUnknownMsg();
+    if(!isTextMsg) return dealUnknownMsg(casperIns);
 
     //是否是指令
-    if(isDiretive(msg)) return;
+    if(isDiretive(msg, casperIns)) return;
     
-    dealByMachine(msg);
+    //非指令消息处理
+    return dealByMachine(casperIns, msg);
 }
 
 //判断是否是指令
 function isDiretive(msg, casperIns){
     for(var diretive in appDirective){
         if(diretive == msg){
-            appDirective[diretive](msg, message, casperIns);
+            casperIns.echo('接受到系统指令 ' + diretive + ' ，正在处理...');
+            appDirective[diretive](msg, casperIns);
             return true;
         }
     }
 
     for(var diretive in fuzzyDirective){
         if(eval(diretive).test(msg)){
-            fuzzyDirective[diretive](msg, message, casperIns);
+            casperIns.echo('接受到模糊匹配指令 ' + diretive + ' ，正在处理...')
+            fuzzyDirective[diretive](msg, casperIns);
             return true;
         }
     }
@@ -36,10 +39,12 @@ function isDiretive(msg, casperIns){
     return false;
 }
 
-function dealUnknownMsg(){
-    message.send('无法识别您发的消息。' + '\n\r发送时间：' + new Date().toLocaleString());
+function dealUnknownMsg(casperIns){
+    message.send(casperIns, '无法识别您发的消息。' + '\n\r发送时间：' + new Date().toLocaleString());
 }
 
-function dealByMachine(msg){
-    message.send('您发送的消息："' + msg + '"\n\r发送时间：' + new Date().toLocaleString());
+function dealByMachine(casperIns, msg){
+    message.send(casperIns, '您发送的消息："' + msg + '"\n\r发送时间：' + new Date().toLocaleString());
 }
+
+module.exports = machine;

@@ -21,9 +21,14 @@ casper.then(function () {
 
 // 等待加载聊天信息，// 搜索目标微信号
 
-casper.waitWhileVisible(WXDOM.LOGIN_LOADING, function () {
-    this.echo("加载最近聊天信息完毕！");
-    searchWx(this, CONST.TARGET_NICK)
+casper.then(function () {
+    casper.waitWhileVisible(WXDOM.LOGIN_LOADING, function () {
+        this.echo("加载最近聊天信息完毕！");
+        searchWx(this, CONST.TARGET_NICK)
+    }, function () {
+        this.echo('加载聊天信息失败!');
+        this.exit();
+    }, 30 * 1000)
 })
 
 // 发送欢迎语
@@ -40,6 +45,9 @@ casper.then(function () {
 casper.on('newMsg', function (msg, isTextMsg) {
     this.echo('触发新文本消息事件，新消息：\n' + msg);
     machine.reply(msg, isTextMsg, this);
+    this.wait(10, function () {
+        this.echo('已回复');
+    })
 })
 
 casper.on('exit', function () {

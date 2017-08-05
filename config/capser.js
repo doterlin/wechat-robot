@@ -10,7 +10,7 @@ module.exports =  {
     viewportSize: {width: 1300, height: 900},
     verbose: true,
     // timeout: Number.POSITIVE_INFINITY,
-    waitTimeout: Number.POSITIVE_INFINITY,
+    waitTimeout: 1000 * 60 * 60 * 24 * 365,
     onWaitTimeout: function(){
         console.log( 'waitFor*方法超时...' )
     }

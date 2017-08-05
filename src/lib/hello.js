@@ -7,7 +7,7 @@ var hello = function (casperIns) {
     
     ts.waitForSelector(WXDOM.CHAT_INPUT, function () {
         ts.echo('已加载输入框...');
-        message.send(this, CONST.HELLO_WORLD);
+        message.send(ts, CONST.HELLO_WORLD);
         ts.echo('已发送欢迎语...');
     });
 }
