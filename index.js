@@ -43,7 +43,7 @@ casper.then(function () {
 
 //处理新消息
 casper.on('newMsg', function (msg, isTextMsg) {
-    this.echo('触发新文本消息事件，新消息：\n' + msg);
+    this.echo('触发新文本消息事件，新消息：\n  “' + msg + '”');
     machine.reply(msg, isTextMsg, this);
     this.wait(10, function () {
         this.echo('已回复');
