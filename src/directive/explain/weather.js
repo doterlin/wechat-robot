@@ -1,29 +1,31 @@
-function formatWeather(local, weather){
+var ajax = require('../../utils/ajax');
+var message = require('../../lib/message');
+
+function formatWeather(weather) {
     // console.log(JSON.stringify(weather));
     // var weather = typeof(weather) == 'Object'? weather: JSON.parse(weather);
     weather = weather.data;
-    var str = '【'+ local +'天气】：\n\r\n\r';
-
-    for(var i in weather.forecast[0]){
-        if(i == 'date'){
-            str += ('【' + weather.forecast[0][i] + "】\n\r");
-        }else{
+    var str = '';
+    for (var i in weather.forecast[0]) {
+        if (i == 'data') {
+            str += weather.forecast[0][i] + "\n\r";
+        } else {
             str += weather.forecast[0][i] + '  '
         }
     }
 
-    str+='\n\r\n\r';
+    str += '\n\r';
 
-    for(var i in weather.forecast[1]){
-        if(i == 'date'){
-            str += ('【' + weather.forecast[1][i] + "】\n\r");
-        }else{
+    for (var i in weather.forecast[1]) {
+        if (i == 'data') {
+            str += weather.forecast[1][i] + "\n\r";
+        } else {
             str += weather.forecast[1][i] + '  '
         }
     }
 
-    if(weather.ganmao){
-        str+='\n\r\n\r[玫瑰]' + weather.ganmao + '[玫瑰]';
+    if (weather.ganmao) {
+        str += '\n\r\n\r[玫瑰]' + weather.ganmao + '[玫瑰]';
     }
     return str;
 }
@@ -51,7 +53,7 @@ function weather(msgContent, casperIns) {
             return window.to_casper_weather = null
         })
         if (weather.status == 1000) {
-            message.send(casperIns, formatWeather(local, weather));
+            message.send(casperIns, 'local天气：\n\r' + formatWeather(weather))
         } else {
             message.send(casperIns, '未查找到相关天气信息。请尝试输入格式如"广州天气"。')
         }

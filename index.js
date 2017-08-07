@@ -1,4 +1,4 @@
-var casper = require('casper').create(require('./config/capser'));
+var casper = require('casper').create(require('./config/casper'));
 var CONST = require('./config/const');
 var WXDOM = require('./config/wxDom');
 var qrcode = require('./src/lib/qrcode');
@@ -19,7 +19,7 @@ casper.then(function () {
     qrcode.start(this);
 });
 
-// 等待加载聊天信息，// 搜索目标微信号
+// 等待加载聊天信息 & 搜索目标微信号
 
 casper.then(function () {
     casper.waitWhileVisible(WXDOM.LOGIN_LOADING, function () {
@@ -52,7 +52,11 @@ casper.on('newMsg', function (msg, isTextMsg) {
 
 casper.on('exit', function () {
     this.echo('-----------------\n已退出程序！')
-})
+});
+
+casper.on("page.error", function(msg, trace) {
+     this.echo("Browser error: " + msg, "ERROR");
+});
 
 casper.run(function () {
     this.echo('执行完毕，程序退出.');

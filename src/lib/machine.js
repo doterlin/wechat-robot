@@ -1,6 +1,7 @@
 var WXDOM = require('../../config/wxDom');
 var message = require('./message');
-var appDirective = require('../directive/app');
+var turing = require('./turing');
+var exactDirective = require('../directive/exact');
 var fuzzyDirective = require('../directive/fuzzy');
 
 var machine = {};
@@ -14,16 +15,16 @@ machine.reply = function(msg, isTextMsg, casperIns){
     //是否是指令
     if(isDiretive(msg, casperIns)) return;
     
-    //非指令消息处理
+    //非指令消息交给第三方机器人
     return dealByMachine(casperIns, msg);
 }
 
 //判断是否是指令
 function isDiretive(msg, casperIns){
-    for(var diretive in appDirective){
+    for(var diretive in exactDirective){
         if(diretive == msg){
-            casperIns.echo('接受到系统指令 ' + diretive + ' ，正在处理...');
-            appDirective[diretive](msg, casperIns);
+            casperIns.echo('接受到精确匹配指令 ' + diretive + ' ，正在处理...');
+            exactDirective[diretive](msg, casperIns);
             return true;
         }
     }
@@ -44,7 +45,8 @@ function dealUnknownMsg(casperIns){
 }
 
 function dealByMachine(casperIns, msg){
-    message.send(casperIns, '您发送的消息："' + msg + '"\n\r发送时间：' + new Date().toLocaleString());
+    turing(casperIns, msg)
+    // message.send(casperIns, '您发送的消息："' + msg + '"\n\r发送时间：' + new Date().toLocaleString());
 }
 
 module.exports = machine;

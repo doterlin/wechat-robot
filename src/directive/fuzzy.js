@@ -1,5 +1,5 @@
 var message = require('../lib/message');
-var weather = require('./fuzzy/weather');
+var weather = require('./explain/weather');
 
 module.exports = {
     //天气

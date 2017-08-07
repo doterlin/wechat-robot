@@ -5,6 +5,10 @@ module.exports = {
     //机器人名字
     'ROBOT_NAME'     : ROBOT_NAME,
 
+    //图灵机器人apiKey和api地址
+    'TURING_APIKEY'  : '99fecec3424d416898b91b0998e2b26a',
+    'TURING_URL'     : 'http://www.tuling123.com/openapi/api',
+
     //锁定的微信号备注
     'TARGET_NICK'    : 'feifei',
 
