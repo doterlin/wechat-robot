@@ -6,7 +6,7 @@ var message = {};
 message.send = function(casperIns, msg){
     if (!casperIns.visible(WXDOM.CHAT_INPUT) || !casperIns.visible(WXDOM.CHAT_INPUT)) {
         casperIns.captureSelector('./static/img/sendMessageError.png', 'html');
-        return casperIns.echo("Module message:息输入框框或者发送按钮未加载！");
+        return casperIns.echo("Module message:输入框或者发送按钮未加载！");
     } 
     try {
         casperIns.sendKeys(WXDOM.CHAT_INPUT, msg);

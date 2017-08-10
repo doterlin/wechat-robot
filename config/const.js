@@ -2,20 +2,21 @@
 var ROBOT_NAME = "小强";
 
 module.exports = {
-    //
+    //微信web版地址
     'URL'          : 'https://wx.qq.com/',
 
     //机器人名字
     'ROBOT_NAME'   : ROBOT_NAME,
 
     //图灵机器人apiKey和api地址
+    //AI部分使用的是第三方机器人图灵（http://www.tuling123.com/）   
     'TURING_APIKEY': '99fecec3424d416898b91b0998e2b26a',
     'TURING_URL'   : 'http://www.tuling123.com/openapi/api',
 
-    //锁定的微信号备注
+    //锁定的微信号备注，注意是备注；如果是群聊则填群聊名称即可。
     'TARGET_NICK'  : '二十投小分队',
 
-    //打招呼消息
+    //启动时打招呼消息
     'HELLO_WORLD'  : '[闪电]' + ROBOT_NAME + '[闪电]已启动...\n\r\n\r现在的时间是：'+new Date().toLocaleString(),
 
 }
