@@ -35,10 +35,9 @@ var weather = function(msgContent, casperIns, regex) {
     ajax.get(casperIns, resource, {}, function(res){
         var weather = JSON.parse(res);
         if (weather.status == 1000) {
-            console.log(formatWeather(local, weather));
+            message.send(casperIns, formatWeather(local, weather));
         } else {
             message.send(casperIns, '未查找到相关天气信息。请尝试输入格式如"广州天气"。')
-            console.log('未查找到相关天气信息。请尝试输入格式如"广州天气"。')
         }
     });
    

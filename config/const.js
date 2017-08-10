@@ -13,7 +13,7 @@ module.exports = {
     'TURING_URL'   : 'http://www.tuling123.com/openapi/api',
 
     //锁定的微信号备注
-    'TARGET_NICK'  : 'feifei',
+    'TARGET_NICK'  : '二十投小分队',
 
     //打招呼消息
     'HELLO_WORLD'  : '[闪电]' + ROBOT_NAME + '[闪电]已启动...\n\r\n\r现在的时间是：'+new Date().toLocaleString(),

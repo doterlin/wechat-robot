@@ -46,7 +46,6 @@ function dealUnknownMsg(casperIns){
 
 function dealByMachine(casperIns, msg){
     turing(casperIns, msg)
-    // message.send(casperIns, '您发送的消息："' + msg + '"\n\r发送时间：' + new Date().toLocaleString());
 }
 
 module.exports = machine;
