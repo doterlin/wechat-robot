@@ -8,7 +8,7 @@
  */
 
 var ajax = function(casperIns, url, type, param, callback){
-    if(type != 'get' && type !='post'){
+    if(type != 'get' && type !='post' && type!='getJSON'){
         return console.log('type不合法！')
     }
 
@@ -43,6 +43,10 @@ var ajax = function(casperIns, url, type, param, callback){
 
 ajax.get = function(casperIns, url, param, callback){
     ajax(casperIns, url, 'get', param, callback);
+}
+
+ajax.getJSON = function(casperIns, url, param, callback){
+    ajax(casperIns, url, 'getJSON', param, callback);
 }
 
 ajax.post = function(casperIns, url, param, callback){

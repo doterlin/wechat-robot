@@ -1,5 +1,5 @@
 var WXDOM = require('../../config/wxDom');
-var message = require('./message');
+var message = require('../utils/message');
 
 
 var hello = function (casperIns) {

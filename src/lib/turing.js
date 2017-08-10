@@ -1,5 +1,5 @@
 var CONST = require('../../config/const');
-var message = require('./message');
+var message = require('../utils/message');
 var ajax = require('../utils/ajax');
 
 var formatTuring = function (res) {

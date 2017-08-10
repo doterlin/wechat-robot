@@ -1,4 +1,4 @@
-var message = require('../lib/message');
+var message = require('../utils/message');
 
 module.exports = {
     '关闭': function (msgContent, casperIns) {

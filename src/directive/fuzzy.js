@@ -1,9 +1,7 @@
-var message = require('../lib/message');
-
 var weather = require('./explain/weather');
-var baike = require('./explain/baike');
-var mPhone = require('./explain/mPhone');
-var ip = require('./explain/ip');
+var baike   = require('./explain/baike');
+var mPhone  = require('./explain/mPhone');
+var ip      = require('./explain/ip');
 
 module.exports = {
     //天气
@@ -15,13 +13,10 @@ module.exports = {
     //手机查询
     '/^1[34578]\d{9}$/g': mPhone,
 
+    //ip地址
     '/\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/g': ip,
 
-    '/火车票/': function (msgContent, casperIns) {
-        message.send(casperIns, '此指令正在开发...');
-    },
-
     '/彩票/': function (msgContent, casperIns) {
-        message.send(casperIns, '此指令正在开发...');
+       //'此指令正在开发...'
     }
 }

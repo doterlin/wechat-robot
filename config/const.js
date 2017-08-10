@@ -2,19 +2,20 @@
 var ROBOT_NAME = "小强";
 
 module.exports = {
+    //
+    'URL'          : 'https://wx.qq.com/',
+
     //机器人名字
-    'ROBOT_NAME'     : ROBOT_NAME,
+    'ROBOT_NAME'   : ROBOT_NAME,
 
     //图灵机器人apiKey和api地址
-    'TURING_APIKEY'  : '99fecec3424d416898b91b0998e2b26a',
-    'TURING_URL'     : 'http://www.tuling123.com/openapi/api',
+    'TURING_APIKEY': '99fecec3424d416898b91b0998e2b26a',
+    'TURING_URL'   : 'http://www.tuling123.com/openapi/api',
 
     //锁定的微信号备注
-    'TARGET_NICK'    : 'feifei',
+    'TARGET_NICK'  : 'feifei',
 
     //打招呼消息
-    'HELLO_WORLD'    : '[闪电]' + ROBOT_NAME + '[闪电]已启动...\n\r\n\r现在的时间是：'+new Date().toLocaleString(),
+    'HELLO_WORLD'  : '[闪电]' + ROBOT_NAME + '[闪电]已启动...\n\r\n\r现在的时间是：'+new Date().toLocaleString(),
 
-    //新增消息多少条时机器人开始回复
-    'MSG_RESPOND_NUM': 1,
 }

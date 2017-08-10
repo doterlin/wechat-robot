@@ -1,5 +1,5 @@
 var WXDOM = require('../../config/wxDom');
-var message = require('./message');
+var message = require('../utils/message');
 var turing = require('./turing');
 var exactDirective = require('../directive/exact');
 var fuzzyDirective = require('../directive/fuzzy');
@@ -29,10 +29,10 @@ function isDiretive(msg, casperIns){
         }
     }
 
-    for(var diretive in fuzzyDirective){
-        if(eval(diretive).test(msg)){
-            casperIns.echo('接受到模糊匹配指令 ' + diretive + ' ，正在处理...')
-            fuzzyDirective[diretive](msg, casperIns);
+    for(var regex in fuzzyDirective){
+        if(eval(regex).test(msg)){
+            casperIns.echo('接受到模糊匹配指令 ' + regex + ' ，正在处理...')
+            fuzzyDirective[regex](msg, casperIns, regex);
             return true;
         }
     }

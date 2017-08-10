@@ -1,18 +1,16 @@
-var casper = require('casper').create(require('./config/casper'));
-var CONST = require('./config/const');
-var WXDOM = require('./config/wxDom');
-var qrcode = require('./src/lib/qrcode');
-var searchWx = require('/src/lib/searchWx');
-var listen = require('/src/lib/listen');
-var hello = require('/src/lib/hello');
-var machine = require('/src/lib/machine');
+var casper   = require('casper').create(require('./config/casper'));
+var CONST    = require('./config/const');
+var WXDOM    = require('./config/wxDom');
+var qrcode   = require('./src/lib/qrcode');
+var searchWx = require('./src/lib/searchWx');
+var listen   = require('./src/lib/listen');
+var hello    = require('./src/lib/hello');
+var machine  = require('./src/lib/machine');
 
-// step1
-casper.echo(require('/src/lib/logo').string);
+// welcome
+casper.echo(require('./src/lib/logo').string);
 console.log('正在加载网页...');
-
-casper.start('https://wx.qq.com/');
-
+casper.start(CONST.URL);
 
 //二维码与登录
 casper.then(function () {

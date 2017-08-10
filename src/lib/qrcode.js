@@ -28,12 +28,10 @@ qrcode.start = function (casperIns) {
             quality: 100
         });
         ts.echo('已保存二维码，路径："static/img/qr.jpg".\n正在使用默认软件打开二维码，请用手机微信扫一扫确认登录 (若没有请手动打开)');
-        execFile("node", ["./src/lib/open.js"], null, function (err, stdout, stderr) {
-            console.log(stdout);
-        });
+        execFile("node", ["./src/lib/open.js"], null);
 
         isLogin(ts);
-    }, function () { }, 60 * 1000);
+    }, function () { }, 120 * 1000);
 }
 
 module.exports = qrcode;

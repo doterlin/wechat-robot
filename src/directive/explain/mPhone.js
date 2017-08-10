@@ -1,7 +1,7 @@
 var ajax = require('../../utils/ajax');
-var message = require('../../lib/message');
+var message = require('../../utils/message');
 
-module.exports = function(msgContent, casperIns) {
+module.exports = function(msgContent, casperIns, regex) {
     var phone = msgContent;
     var resource = 'https://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel=' + msgContent;
 

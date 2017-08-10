@@ -1,5 +1,5 @@
 var ajax = require('../../utils/ajax');
-var message = require('../../lib/message');
+var message = require('../../utils/message');
 
 var formatWeather = function(local, weather) {
     var weather = weather.data;
@@ -28,7 +28,7 @@ var formatWeather = function(local, weather) {
     return str;
 }
 
-var weather = function(msgContent, casperIns) {
+var weather = function(msgContent, casperIns, regex) {
     var local = msgContent.replace(/ |天气/, '');
     var resource = 'http://wthrcdn.etouch.cn/weather_mini?city=' + encodeURIComponent(local);
 
