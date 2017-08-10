@@ -2,18 +2,21 @@
 
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)]()
 [![npm](https://img.shields.io/badge/npm-v1.0-blue.svg)]()
-[![npm](https://img.shields.io/npm/l/express.svg)]()
+[![npm](https://img.shields.io/npm/l/express.svg)](https://github.com/doterlin/wechat-robot/blob/master/LICENSE)
 
 
 >基于`phantomjs`和web端微信开发的聊天机器人。使用的微信账号（即充当机器人的账号）为个人账号，可自定义指令。
 # 效果
 可以指定一个微信账号：
+
 ![撩妹](http://upload-images.jianshu.io/upload_images/3169607-2068f9382b4f9f29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 自定义指令不会交给AI处理：
+
 ![自定义指令](http://upload-images.jianshu.io/upload_images/3169607-a92574f783093df2.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 独乐乐不如众乐乐，可以指定到群聊上：
+
 ![微信群](http://upload-images.jianshu.io/upload_images/3169607-7c929617f3b2a790.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
