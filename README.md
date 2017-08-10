@@ -2,7 +2,8 @@
 
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)]()
 [![npm](https://img.shields.io/badge/npm-v1.0-blue.svg)]()
-[![npm](https://img.shields.io/npm/l/express.svg)](https://github.com/doterlin/wechat-robot/blob/master/LICENSE)
+[![MIT](https://img.shields.io/npm/l/express.svg)](https://github.com/doterlin/wechat-robot/blob/master/LICENSE)
+[![copyRight](https://img.shields.io/badge/power%20by-doterlin-orange.svg)](https://github.com/doterlin)
 
 
 >基于`phantomjs`和web端微信开发的聊天机器人。使用的微信账号（即充当机器人的账号）为个人账号，可自定义指令。
