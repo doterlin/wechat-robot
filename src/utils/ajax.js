@@ -12,10 +12,10 @@ var ajax = function(casperIns, url, type, param, callback){
         return console.log('type不合法！')
     }
 
-    casperIns.echo('开始Ajax ' + type +'请求: ' + resource);
+    casperIns.echo('开始Ajax ' + type +'请求: ' + url);
     casperIns.echo('Ajax参数: ' + JSON.stringify(param));
-    casperIns.evaluate(function(resource, type, param) {
-        $[type](resource, param, function(data) {
+    casperIns.evaluate(function(url, type, param) {
+        $[type](url, param, function(data) {
              window.wr_ajax_respond= data; 
         })
     }, url, type, param);

@@ -5,8 +5,8 @@ var formatWeather = function(local, weather) {
     var weather = weather.data;
     var str = '【' + local +'天气】\n\r\n\r';
     for (var i in weather.forecast[0]) {
-        if (i == 'data') {
-            str += '【' + weather.forecast[0][i] + "】\n\r\n\r";
+        if (i == 'date') {
+            str += '【' + weather.forecast[0][i] + "】\n\r";
         } else {
             str += weather.forecast[0][i] + '  '
         }
@@ -15,8 +15,8 @@ var formatWeather = function(local, weather) {
     str += '\n\r';
 
     for (var i in weather.forecast[1]) {
-        if (i == 'data') {
-            str += '【' + weather.forecast[1][i] + "】\n\r\n\r";
+        if (i == 'date') {
+            str += '【' + weather.forecast[1][i] + "】\n\r";
         } else {
             str += weather.forecast[1][i] + '  '
         }
@@ -35,9 +35,10 @@ var weather = function(msgContent, casperIns, regex) {
     ajax.get(casperIns, resource, {}, function(res){
         var weather = JSON.parse(res);
         if (weather.status == 1000) {
-            message.send(casperIns, formatWeather(local, weather))
+            console.log(formatWeather(local, weather));
         } else {
             message.send(casperIns, '未查找到相关天气信息。请尝试输入格式如"广州天气"。')
+            console.log('未查找到相关天气信息。请尝试输入格式如"广州天气"。')
         }
     });
    
