@@ -1,7 +1,6 @@
 ![](http://upload-images.jianshu.io/upload_images/3169607-74099cb906bf59f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)]()
-[![npm](https://img.shields.io/badge/npm-v1.0-blue.svg)]()
+[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://github.com/doterlin/wechat-robot)
 [![MIT](https://img.shields.io/npm/l/express.svg)](https://github.com/doterlin/wechat-robot/blob/master/LICENSE)
 [![copyRight](https://img.shields.io/badge/power%20by-doterlin-orange.svg)](https://github.com/doterlin)
 

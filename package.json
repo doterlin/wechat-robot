@@ -1,5 +1,5 @@
 {
-  "name": "wechat-robot",
+  "name": "wx-robot",
   "version": "1.0.0",
   "description": "A WeChat automatic response robot.",
   "main": "index.js",
@@ -17,5 +17,5 @@
     "js"
   ],
   "author": "doterlin",
-  "license": "ISC"
+  "license": "MIT"
 }
