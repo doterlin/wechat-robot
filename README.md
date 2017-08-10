@@ -8,15 +8,12 @@
 >基于`phantomjs`和web端微信开发的聊天机器人。使用的微信账号（即充当机器人的账号）为个人账号，可自定义指令。
 # 效果
 可以指定一个微信账号：
-
 ![撩妹](http://upload-images.jianshu.io/upload_images/3169607-2068f9382b4f9f29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 自定义指令不会交给AI处理：
-
 ![自定义指令](http://upload-images.jianshu.io/upload_images/3169607-a92574f783093df2.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 独乐乐不如众乐乐，可以指定到群聊上：
-
 ![微信群](http://upload-images.jianshu.io/upload_images/3169607-7c929617f3b2a790.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
@@ -186,12 +183,37 @@ module.exports = weather;
 ##### 完善AI
 这个我目前也没研究。
 
+##### 调试
+调试代码时可将`capserjs`配置选像中的`logLevel`字段设为`info`将会显示更多`phantomjs`log，更多配置请移步[casperjs](http://casperjs.org/)文档。
+```
+//路径：config/casper.js
+module.exports =  {
+    clientScripts:  [
+        'static/js/jquery.js'
+    ],
+    pageSettings: {
+        loadImages: true,
+        userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.14 Safari/537.36',
+    },
+    logLevel: "info", //here
+    viewportSize: {width: 1300, height: 900},
+    verbose: true,
+    waitTimeout: 1000 * 60 * 60 * 24 * 365,
+    onWaitTimeout: function(){
+        console.log( 'waitFor*方法超时...' )
+    }
+}
+
+```
+另外，在执行各个步骤时会把浏览器截图保存到`/static/img`，方便查看浏览器渲染情况。比如每获取到一条新消息时会截图并覆盖为`lastNewMsgContent.png`。
+
+
 > **二次开发若方便请`Fork`贡献给本[Github](https://github.com/doterlin/wechat-robot)，共同完善项目！**
 
 
 # 版本预告
 下一版本更新但不限于以下内容：
-1.支持绑定多个微信帐号
-2.UI化控制台（`node.js web`同步命令log及部分操作）
-3.支持图片识别和回复（如斗图）
-4.更多实用指令
+> 1.支持绑定多个微信帐号
+> 2.UI化控制台（`node.js web`同步命令log及部分操作）
+> 3.支持图片识别和回复（如斗图）
+> 4.更多实用指令
