@@ -34,10 +34,17 @@
 
 # 如何使用
 ### 1.安装环境
-下载好[源码](https://github.com/doterlin/wechat-robot)并安装以下环境：
+下载[源码](https://github.com/doterlin/wechat-robot):
+```
+git clone https://github.com/doterlin/wechat-robot.git
+```
 
-1.[node.js](https://nodejs.org/) 
+安装以下环境：
+
+1.[node.js](https://nodejs.org/)
+
 2.[phantomjs](http://phantomjs.org/)
+
 3.[casperjs](http://casperjs.org/)
 
 
