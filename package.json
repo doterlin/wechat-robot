@@ -4,8 +4,6 @@
   "description": "A WeChat automatic response robot.",
   "main": "index.js",
   "dependencies": {
-    "_casperjs@1.1.4@casperjs": "^1.1.4",
-    "casperjs": "^1.1.4"
   },
   "devDependencies": {},
   "scripts": {
