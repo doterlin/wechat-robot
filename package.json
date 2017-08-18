@@ -4,6 +4,7 @@
   "description": "A WeChat automatic response robot.",
   "main": "index.js",
   "dependencies": {
+    "opn": "^5.1.0"
   },
   "devDependencies": {},
   "scripts": {
