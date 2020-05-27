@@ -218,7 +218,7 @@ module.exports =  {
 另外，在执行各个步骤时会把浏览器截图保存到`/static/img`，方便查看浏览器渲染情况。比如每获取到一条新消息时会截图并覆盖为`lastNewMsgContent.png`。
 
 
-> **二次开发若方便请`Fork`贡献给本[Github](https://github.com/doterlin/wechat-robot)，共同完善项目！**
+> **欢迎二次开发提PR，共同完善项目！**
 
 
 # 版本预告
@@ -230,7 +230,7 @@ module.exports =  {
 
 # MIT License
 
-Copyright (c) 2017 doterlin
+Copyright (c) 2020 doterlin
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
