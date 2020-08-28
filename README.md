@@ -84,7 +84,7 @@ module.exports = {
 npm install
 ```
 ```
-capserjs index.js
+casperjs index.js
 ```
 *如果提示`python找不到`之类的话请安装一下[python](https://www.python.org/)并保证其能运行在全局*
 
