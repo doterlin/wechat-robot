@@ -1,3 +1,7 @@
+# **官方可能存在打压行为，项目可能已运行不正常。不再维护，感谢！**
+
+
+
 ![](http://upload-images.jianshu.io/upload_images/3169607-74099cb906bf59f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://github.com/doterlin/wechat-robot)
